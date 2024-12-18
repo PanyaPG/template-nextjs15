@@ -9,17 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.2",
+    "@formatjs/intl-localematcher": "^0.5.9",
+    "antd": "^5.22.5",
+    "axios-mock-adapter": "^2.1.0",
+    "crypto-js": "^4.2.0",
+    "jwt-decode": "^4.0.0",
+    "mobx": "^6.13.5",
+    "mobx-react": "^9.2.0",
+    "negotiator": "^1.0.0",
+    "next": "15.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.1.0"
+    "universal-cookie": "^7.2.2"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
+    "@eslint/eslintrc": "^3",
+    "@types/crypto-js": "^4.2.2",
+    "@types/negotiator": "^0.6.3",
+    "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.1.0",
-    "@eslint/eslintrc": "^3"
+    "eslint-config-next": "15.1.1",
+    "typescript": "^5"
   }
 }

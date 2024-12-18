@@ -1,0 +1,10 @@
+version: "1.0"
+services:
+  web-symphony-console:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web-symphony-console
+    ports:
+      - "3000:3000"
+    restart: always
