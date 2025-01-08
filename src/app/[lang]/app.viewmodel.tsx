@@ -13,7 +13,7 @@ export class AppViewModel {
   language = "English";
   placementNoti: NotificationPlacement = "bottomRight";
   title: string = "test";
-
+  isPassLogin: boolean = false;
   constructor(
     private readonly cookiesAdapter: CookiesAdapter = new CookiesAdapterImpl()
   ) {

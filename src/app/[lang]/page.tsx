@@ -1,14 +1,22 @@
 "use client";
 import { observer } from "mobx-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useDictionary } from "../../../src/i18n/dictionaryContext";
 import { i18n } from "../../../src/i18n/i18n.config";
+import { Path } from "../../types/path.enum";
+import appViewModel from "./app.viewmodel";
 
 const Home = () => {
   const dictionary = useDictionary();
   const { lang } = useParams();
+  const router = useRouter();
 
+  if (!appViewModel.isPassLogin) {
+    router.push(Path.Login);
+  }
+
+  return null;
   return (
     <div>
       <h1>Index page</h1>

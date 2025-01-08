@@ -22,6 +22,19 @@ function getLocale(request: NextRequest): string | undefined {
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  const searchParams = request.nextUrl.search;
+
+  // Exclude static files such as images, styles, scripts, etc.
+  const isStaticAsset =
+    pathname.startsWith("/images") ||
+    pathname.startsWith("/icons") ||
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/favicon.ico");
+
+  // Skip the middleware logic for static assets
+  if (isStaticAsset) {
+    return NextResponse.next();
+  }
 
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
@@ -32,7 +45,9 @@ export function middleware(request: NextRequest) {
 
     return NextResponse.redirect(
       new URL(
-        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+        `/${locale}${
+          pathname.startsWith("/") ? "" : "/"
+        }${pathname}${searchParams}`,
         request.url
       )
     );
@@ -41,5 +56,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|__nextjs_original-stack-frame|favicon.ico).*)",
+  ],
 };
