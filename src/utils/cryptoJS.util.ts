@@ -34,7 +34,10 @@ export const decryptData = (body: any) => {
       mode: CryptoJS.mode.CBC,
       padding: CryptoJS.pad.Pkcs7,
     });
-    const dataDec = JSON.parse(decrypted.toString(CryptoJS.enc.Utf8));
+
+    const convertString = decrypted.toString(CryptoJS.enc.Utf8);
+
+    const dataDec = convertString ? JSON.parse(convertString) : "";
     return dataDec;
   } catch (error: any) {
     console.log("🚀 ~ decryptData ~ error:", error);

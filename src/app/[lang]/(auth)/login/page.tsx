@@ -1,21 +1,30 @@
 "use client";
 import { Card, Divider, Form, FormProps, theme, Typography } from "antd";
 import { observer } from "mobx-react";
+import { useRouter } from "next/navigation";
+import { useDictionary } from "../../../../i18n/dictionaryContext";
 import { Path } from "../../../../types/path.enum";
+import appViewModel from "../../app.viewmodel";
 import FormLogin from "../components/FormLogin";
 import { FieldType } from "../interface";
 
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-
 const LoginPage = () => {
+  const router = useRouter();
   const [form] = Form.useForm<FieldType>();
   const { colorPrimary } = theme.useToken().token;
+  const dictionary = useDictionary();
+
+  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+    console.log("Success:", values);
+    appViewModel.isPassLogin = true;
+    router.push(Path.Home);
+  };
+
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
+    errorInfo
+  ) => {
+    console.log("Failed:", errorInfo);
+  };
 
   return (
     <div
@@ -41,7 +50,7 @@ const LoginPage = () => {
             textAlign: "center",
           }}
         >
-          Template Login
+          {dictionary?.login.title}
         </Typography.Title>
         <FormLogin form={form} fnSuccess={onFinish} fnFaild={onFinishFailed} />
         <Divider style={{ margin: "0px 0px 10px" }} />
@@ -49,8 +58,10 @@ const LoginPage = () => {
           type="secondary"
           style={{ display: "block", textAlign: "center" }}
         >
-          Don&apos;t have an account?{" "}
-          <Typography.Link href={Path.Register}>Register Now</Typography.Link>
+          {dictionary?.login.notAccount}
+          <Typography.Link href={Path.Register}>
+            {dictionary?.login.registerNow}
+          </Typography.Link>
         </Typography.Text>
       </Card>
     </div>

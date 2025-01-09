@@ -2,6 +2,7 @@
 import { observer } from "mobx-react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useDictionary } from "../../../src/i18n/dictionaryContext";
 import { i18n } from "../../../src/i18n/i18n.config";
 import { Path } from "../../types/path.enum";
@@ -12,11 +13,14 @@ const Home = () => {
   const { lang } = useParams();
   const router = useRouter();
 
-  if (!appViewModel.isPassLogin) {
-    router.push(Path.Login);
-  }
+  useEffect(() => {
+    if (!appViewModel.isPassLogin) {
+      router.push(Path.Login);
+    }
+  }, []);
 
-  return null;
+  if (!appViewModel.isPassLogin) return;
+
   return (
     <div>
       <h1>Index page</h1>
