@@ -23,10 +23,10 @@ a {
 .body-auth {
   background: linear-gradient(
     315deg,
-    rgb(73, 30, 122) 3%,
-    rgba(60, 132, 206, 1) 38%,
-    rgb(43, 197, 187) 68%,
-    rgb(96, 179, 162) 98%
+    rgba(230, 56, 68, 0.5) 3%,
+    rgb(255, 112, 68, 0.5) 38%,
+    rgb(255, 168, 70, 0.5) 68%,
+    rgb(255, 220, 80, 0.5) 98%
   );
   animation: gradient 20s ease infinite;
   background-size: 400% 400%;

@@ -24,7 +24,7 @@ const ThemeProvider: NextPage<Props> = ({ children }) => {
       theme={{
         algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
         token: {
-          colorPrimary: "#54D3E9",
+          colorPrimary: "#EF8050",
         },
       }}
     >

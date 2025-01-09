@@ -1,25 +1,13 @@
 "use client";
 import { observer } from "mobx-react";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { useDictionary } from "../../../src/i18n/dictionaryContext";
-import { i18n } from "../../../src/i18n/i18n.config";
-import { Path } from "../../types/path.enum";
-import appViewModel from "./app.viewmodel";
+import { useParams } from "next/navigation";
+import { useDictionary } from "../../../i18n/dictionaryContext";
+import { i18n } from "../../../i18n/i18n.config";
 
 const Home = () => {
   const dictionary = useDictionary();
   const { lang } = useParams();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!appViewModel.isPassLogin) {
-      router.push(Path.Login);
-    }
-  }, []);
-
-  if (!appViewModel.isPassLogin) return;
 
   return (
     <div>

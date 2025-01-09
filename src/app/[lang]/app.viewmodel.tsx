@@ -14,6 +14,7 @@ export class AppViewModel {
   placementNoti: NotificationPlacement = "bottomRight";
   title: string = "test";
   isPassLogin: boolean = false;
+  collapsed: boolean = false;
   constructor(
     private readonly cookiesAdapter: CookiesAdapter = new CookiesAdapterImpl()
   ) {
